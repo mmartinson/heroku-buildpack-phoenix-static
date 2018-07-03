@@ -118,11 +118,19 @@ install_and_cache_deps() {
 
   if [ -f "$assets_dir/yarn.lock" ]; then
     install_yarn_deps
+    info "yarn install complete"
   else
     install_npm_deps
+    info "npm install complete"
   fi
+  info "Copying into cache dir:"
+  info $cache_dir
+
+  info "Copying from:"
+  info pwd
 
   cp -r node_modules $cache_dir
+  info "Copying complete"
   PATH=$assets_dir/node_modules/.bin:$PATH
   install_bower_deps
 }
